@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "318417946530",
+    "project_id": "roommer-69d5c",
+    "storage_bucket": "roommer-69d5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318417946530:android:feb8d762a2a39877ad94fb",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318417946530-gmop3m7ngnasrm5rit7st5ue4b7dc8ap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKVknAOicNYsxTXpJSO-YDgQA109p8eZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318417946530-gmop3m7ngnasrm5rit7st5ue4b7dc8ap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
