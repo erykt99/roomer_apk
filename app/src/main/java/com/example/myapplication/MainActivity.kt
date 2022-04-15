@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.login_btn)
         val email = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
+        val btnSignup = findViewById<Button>(R.id.btnSignup)
 
         btnLogin.setOnClickListener{
             //stop
@@ -41,17 +42,12 @@ class MainActivity : AppCompatActivity() {
             On successful response Display a Toast
             */
 
-
-            auth.signInWithEmailAndPassword(email2, pass2).addOnCompleteListener(this) {
-                if(it.isSuccessful) {
-                    Toast.makeText(this, "Successfully LoggedIn", Toast.LENGTH_SHORT).show()
-                } else
-                    Toast.makeText(this, "Log In failed", Toast.LENGTH_SHORT).show()
-
-            }
         }
 
-        val btnSignup = findViewById<Button>(R.id.btnSignup)
+        btnLogin.setOnClickListener {
+            Toast.makeText(this,"Hello !", Toast.LENGTH_SHORT).show()
+        }
+
         btnSignup.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
@@ -59,8 +55,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-
-// to sie przyda przy wyswietlaniu uzytkownikow jak sie polaczy z baza
 /*val arrayAdapter: ArrayAdapter<*>
 val users = arrayOf(
     "Virat Kohli", "Rohit Sharma", "Steve Smith",
