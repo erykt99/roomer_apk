@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".UsersActivity2">
 
-    <ListView
-        android:id="@+id/usersListView"
-        android:layout_width="355dp"
-        android:layout_height="649dp"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="199dp"
+        android:layout_height="121dp"
+        android:text="login succes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
