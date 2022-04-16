@@ -1,22 +1,12 @@
 package com.example.myapplication
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import com.example.myapplication.R
-import com.example.myapplication.R.layout.activity_signup
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_signup.*
-import org.w3c.dom.Text
 
 
 class SignupActivity : AppCompatActivity() {
@@ -28,7 +18,7 @@ class SignupActivity : AppCompatActivity() {
 
         val btnBacktologin = findViewById<Button>(R.id.btnBackToLogin)
         btnBacktologin.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
