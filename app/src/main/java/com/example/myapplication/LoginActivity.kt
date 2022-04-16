@@ -35,20 +35,21 @@ class LoginActivity : AppCompatActivity() {
                     baseContext, "Email or password can't be blank",
                     Toast.LENGTH_SHORT
                 ).show()
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
             } else{
                 auth.signInWithEmailAndPassword(emailString, passString)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success")
-                            val user = auth.currentUser
+                            val currentUser = auth.currentUser
                             Toast.makeText(
                                 baseContext, "Authentication complete",
                                 Toast.LENGTH_SHORT
                             ).show()
                             val intent = Intent(this, ProfileActivity::class.java)
+                            if (currentUser != null) {
+                                intent.putExtra("User",currentUser.email)
+                            }
                             startActivity(intent)
                         } else {
                             // If sign in fails, display a message to the user.

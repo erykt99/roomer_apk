@@ -35,15 +35,18 @@ class SignupActivity : AppCompatActivity() {
 
             if (newemail.isBlank() || newpassword.isBlank()) {
                 Toast.makeText(this, "Email and Password can't be blank", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, SignupActivity::class.java)
-                startActivity(intent)
             } else {
                 auth.createUserWithEmailAndPassword(newemail, newpassword)
                     .addOnCompleteListener(this) {
                         if (it.isSuccessful) {
                             Toast.makeText(this, "Successfully Singed Up", Toast.LENGTH_SHORT)
                                 .show()
-                            finish();
+                            val intent2 = Intent(this, ProfileActivity::class.java)
+                            val currentUser = auth.currentUser
+                            if (currentUser != null) {
+                                intent2.putExtra("User",currentUser.email)
+                            }
+                            startActivity(intent2)
                         } else {
                             Toast.makeText(this, "Singed Up Failed!", Toast.LENGTH_SHORT).show()
                         }

@@ -9,7 +9,6 @@
         <entry key="..\:/AndroidProjects/roomer_apk/app/src/main/res/layout/activity_users2.xml" value="0.18541666666666667" />
         <entry key="..\:/AndroidProjects/roomer_apk/app/src/main/res/layout/content_splash_screen.xml" value="0.271875" />
         <entry key="..\:/AndroidProjects/roomer_apk/app/src/main/res/layout/fragment_first.xml" value="0.27395833333333336" />
-        <entry key="..\:/AndroidProjects/roomer_apk/app/src/main/res/menu/profile_menu.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/activity_signup.xml" value="0.23072916666666668" />
@@ -17,9 +16,16 @@
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/activity_users2.xml" value="0.31875" />
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/content_users2.xml" value="0.31875" />
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/fragment_first.xml" value="0.31875" />
+        <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/activity_login.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/activity_signup.xml" value="0.259375" />
+        <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/activity_splash_screen.xml" value="0.23505434782608695" />
+        <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/activity_user_information.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/activity_users2.xml" value="0.259375" />
+        <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/content_splash_screen.xml" value="0.23505434782608695" />
+        <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/fragment_first2.xml" value="0.23505434782608695" />
+        <entry key="..\:/Users/err/Documents/roommer/roomer_apk/app/src/main/res/layout/fragment_second.xml" value="0.23505434782608695" />
       </map>
     </option>
   </component>
