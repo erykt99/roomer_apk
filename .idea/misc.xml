@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/roomer_apk/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
+        <entry key="..\:/AndroidProjects/roomer_apk/app/src/main/res/layout/activity_signup.xml" value="0.18541666666666667" />
+        <entry key="..\:/AndroidProjects/roomer_apk/app/src/main/res/layout/activity_users2.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/err/Documents/roommer/app/src/main/res/layout/activity_signup.xml" value="0.23072916666666668" />
