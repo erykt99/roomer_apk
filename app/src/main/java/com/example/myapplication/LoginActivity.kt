@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                                 baseContext, "Authentication complete",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            val intent = Intent(this, UsersActivity2::class.java)
+                            val intent = Intent(this, ProfileActivity::class.java)
                             startActivity(intent)
                         } else {
                             // If sign in fails, display a message to the user.

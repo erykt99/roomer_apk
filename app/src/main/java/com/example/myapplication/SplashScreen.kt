@@ -47,7 +47,14 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }else {
-            val intent = Intent(this, UsersActivity2::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
+            //tutaj trzeba bedzie zmienic to currentUser.email
+            //i stworzyć klase, która bedzie przyjmować auth.currentUser
+            // i tak klasa bedzie rozszerzona o interface Parceable czy cos takiego
+            // i wtedy bedzie można do ProfilActivity wysłać cały obiekt currentUser
+            // i tam korzystać z database podłączonego do tego usera
+            //jak coś to zostawiłem te adnotacje dla siebie nie musisz tego kumać XD
+            intent.putExtra("User",currentUser.email) // <--- o to chodzi
             startActivity(intent)
         }
     }

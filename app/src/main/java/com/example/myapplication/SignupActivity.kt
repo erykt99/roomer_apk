@@ -16,8 +16,8 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        val btnBacktologin = findViewById<Button>(R.id.btnBackToLogin)
-        btnBacktologin.setOnClickListener {
+        val btnBackToLogin = findViewById<Button>(R.id.btnBackToLogin)
+        btnBackToLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

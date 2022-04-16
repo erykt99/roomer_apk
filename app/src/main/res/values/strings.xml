@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Roomer</string>
     <string name="title_activity_users2">usersActivity2</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -12,4 +12,6 @@
     <string name="login">Login</string>
     <string name="title_activity_tst">Tst</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="email">e-mail</string>
+    <string name="logout">Logout</string>
 </resources>

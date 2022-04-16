@@ -21,26 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Tst"
-            android:exported="false"
-            android:label="@string/title_activity_tst"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
-        <activity
-            android:name=".UsersActivity2"
+            android:name=".ProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".usersActivity2"
-            android:exported="false"
-            android:label="@string/title_activity_users2"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".usersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
