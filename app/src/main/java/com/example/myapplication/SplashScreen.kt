@@ -54,7 +54,7 @@ class SplashScreen : AppCompatActivity() {
             // i wtedy bedzie można do ProfilActivity wysłać cały obiekt currentUser
             // i tam korzystać z database podłączonego do tego usera
             //jak coś to zostawiłem te adnotacje dla siebie nie musisz tego kumać XD
-            //intent.putExtra("User",currentUser.email) // <--- o to chodzi
+            intent.putExtra("User",currentUser.email) // <--- o to chodzi
             startActivity(intent)
         }
     }
