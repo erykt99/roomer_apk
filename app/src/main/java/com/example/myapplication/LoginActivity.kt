@@ -47,9 +47,9 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                             val intent = Intent(this, ProfileActivity::class.java)
-                            if (currentUser != null) {
-                                intent.putExtra("User",currentUser.email)
-                            }
+//                            if (currentUser != null) {
+//                                intent.putExtra("User",currentUser.email)
+//                            }
                             startActivity(intent)
                         } else {
                             // If sign in fails, display a message to the user.
