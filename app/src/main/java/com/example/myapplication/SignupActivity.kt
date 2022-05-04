@@ -43,9 +43,9 @@ class SignupActivity : AppCompatActivity() {
                                 .show()
                             val intent2 = Intent(this, ProfileActivity::class.java)
                             val currentUser = auth.currentUser
-//                            if (currentUser != null) {
-//                                intent2.putExtra("User",currentUser.email)
-//                            }
+                            if (currentUser != null) {
+                                intent2.putExtra("User",currentUser.email)
+                            }
                             startActivity(intent2)
                         } else {
                             Toast.makeText(this, "Singed Up Failed!", Toast.LENGTH_SHORT).show()
