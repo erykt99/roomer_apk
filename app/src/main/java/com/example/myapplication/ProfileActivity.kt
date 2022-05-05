@@ -26,6 +26,20 @@ class ProfileActivity : AppCompatActivity() {
         val userInformation = findViewById<EditText>(R.id.userInfromation)
         val gender = findViewById<RadioGroup>(R.id.Gender)
 
+        //tutaj to user ID ale nwm czy to dziala
+        val getID = cloudStorage.collection("userID")
+            .document("WmG9cqg7WQqTz2k6ZIQU").get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.get("numberOfUsers")}")
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception)
+            }
+
 
         val emailView = findViewById<TextView>(R.id.textView3)
         emailView.text = auth.currentUser?.email ?: ""
@@ -33,16 +47,18 @@ class ProfileActivity : AppCompatActivity() {
 
         val saveButton = findViewById<Button>(R.id.btnSave)
         saveButton.setOnClickListener {
-            if (userInformation.text.toString().isEmpty() || !gender.isPressed
-                || age.text.toString().isEmpty() || username.text.toString().isEmpty()) {
+            if (userInformation.text.toString().isBlank() || !gender.isPressed
+                || age.text.toString().isBlank() || username.text.toString().isBlank()) {
                 Toast.makeText(applicationContext,"Please fill all the information",Toast.LENGTH_LONG).show()
             } else {
+
                 val radioButton = findViewById<RadioButton>(gender.checkedRadioButtonId)
                 val user = hashMapOf(
                     "Name" to username.text.toString(),
                     "UserInformation" to userInformation.text.toString(),
                     "Age" to age.text.toString(),
-                    "Gender" to radioButton.text.toString()
+                    "Gender" to radioButton.text.toString(),
+                    "ID" to getID //nwm czy dziala
                 )
                 auth.currentUser?.let { it1 ->
                     cloudStorage.collection("users").document(it1.uid)
@@ -54,9 +70,10 @@ class ProfileActivity : AppCompatActivity() {
                             Log.w(TAG, "Error adding document", e)
                         }
                 }
-
+                //getID =getID+1  //tutaj jest inkrementacja ale nie dziala
             }
         }
+
 
         val settingsButtom = findViewById<ImageButton>(R.id.settingsButton)
         settingsButtom.setOnClickListener {
