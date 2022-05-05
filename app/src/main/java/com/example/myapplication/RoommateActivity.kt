@@ -11,6 +11,9 @@ class RoommateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_roommate)
 
         val cloudDatabase = Firebase.firestore
+        //tutaj robimy tak, losujemy liczbe z zakresu 0 do numberOfUsers -1
+        // następnie szukamy usera o id ktory jest rowne wyszukanej liczby
+        // i uzupelniamy wszystko tymi danymi
 
     }
 }

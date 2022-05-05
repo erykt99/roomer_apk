@@ -25,13 +25,15 @@ class ProfileActivity : AppCompatActivity() {
         val age = findViewById<EditText>(R.id.userAge)
         val userInformation = findViewById<EditText>(R.id.userInfromation)
         val gender = findViewById<RadioGroup>(R.id.Gender)
+        val emailView = findViewById<TextView>(R.id.textView3)
+        emailView.text = auth.currentUser?.email ?: ""
 
         //tutaj to user ID ale nwm czy to dziala
         val getID = cloudStorage.collection("userID")
             .document("WmG9cqg7WQqTz2k6ZIQU").get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.get("numberOfUsers")}")
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
                 } else {
                     Log.d(TAG, "No such document")
                 }
@@ -40,9 +42,9 @@ class ProfileActivity : AppCompatActivity() {
                 Log.d(TAG, "get failed with ", exception)
             }
 
+           val number =  getID.result.get("numberOfUsers")
 
-        val emailView = findViewById<TextView>(R.id.textView3)
-        emailView.text = auth.currentUser?.email ?: ""
+
 
 
         val saveButton = findViewById<Button>(R.id.btnSave)
@@ -58,7 +60,7 @@ class ProfileActivity : AppCompatActivity() {
                     "UserInformation" to userInformation.text.toString(),
                     "Age" to age.text.toString(),
                     "Gender" to radioButton.text.toString(),
-                    "ID" to getID //nwm czy dziala
+                    "ID" to number //nwm czy dziala
                 )
                 auth.currentUser?.let { it1 ->
                     cloudStorage.collection("users").document(it1.uid)
