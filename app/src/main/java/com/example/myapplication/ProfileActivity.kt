@@ -7,11 +7,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserInfo
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.android.synthetic.main.activity_profile.*
+import java.util.jar.Attributes
 
 class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,12 +31,20 @@ class ProfileActivity : AppCompatActivity() {
         val emailView = findViewById<TextView>(R.id.textView3)
         emailView.text = auth.currentUser?.email ?: ""
 
-        //tutaj to user ID ale nwm czy to dziala
-        val getID = cloudStorage.collection("userID")
-            .document("WmG9cqg7WQqTz2k6ZIQU").get()
+        val ID = Firebase.auth.uid.toString()
+
+        val docRef = cloudStorage.collection("users").document(ID)
+        docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                    val hint = document.get("Name").toString()
+                    val age2 = document.get("Age").toString()
+                    val UF  = document.get("UserInformation").toString()
+                    userInformation.hint = UF
+                    userAge.hint = age2
+                    username.hint = hint;
+
                 } else {
                     Log.d(TAG, "No such document")
                 }
@@ -42,17 +53,16 @@ class ProfileActivity : AppCompatActivity() {
                 Log.d(TAG, "get failed with ", exception)
             }
 
-           val number =  getID.result.get("numberOfUsers")
 
 
 
 
         val saveButton = findViewById<Button>(R.id.btnSave)
         saveButton.setOnClickListener {
-            if (userInformation.text.toString().isBlank() || !gender.isPressed
-                || age.text.toString().isBlank() || username.text.toString().isBlank()) {
-                Toast.makeText(applicationContext,"Please fill all the information",Toast.LENGTH_LONG).show()
-            } else {
+//            if (userInformation.text.toString().isBlank() || !gender.isPressed
+//                || age.text.toString().isBlank() || username.text.toString().isBlank()) {
+//                Toast.makeText(applicationContext,"Please fill all the information",Toast.LENGTH_LONG).show()
+//            } else {
 
                 val radioButton = findViewById<RadioButton>(gender.checkedRadioButtonId)
                 val user = hashMapOf(
@@ -60,7 +70,7 @@ class ProfileActivity : AppCompatActivity() {
                     "UserInformation" to userInformation.text.toString(),
                     "Age" to age.text.toString(),
                     "Gender" to radioButton.text.toString(),
-                    "ID" to number //nwm czy dziala
+                    "ID" to Firebase.auth.uid
                 )
                 auth.currentUser?.let { it1 ->
                     cloudStorage.collection("users").document(it1.uid)
@@ -72,8 +82,8 @@ class ProfileActivity : AppCompatActivity() {
                             Log.w(TAG, "Error adding document", e)
                         }
                 }
-                //getID =getID+1  //tutaj jest inkrementacja ale nie dziala
-            }
+
+          //  }
         }
 
 
