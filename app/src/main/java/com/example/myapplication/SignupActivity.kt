@@ -1,16 +1,24 @@
 package com.example.myapplication
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class SignupActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
+    val cloudStorage = Firebase.firestore
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +53,23 @@ class SignupActivity : AppCompatActivity() {
                             val currentUser = auth.currentUser
                             if (currentUser != null) {
                                 intent2.putExtra("User",currentUser.email)
+                            }
+                            val user = hashMapOf(
+                                "Name" to "Username",
+                                "UserInformation" to "Tell something about you",
+                                "Age" to "Age",
+                                "Gender" to "Gender",
+                                "ID" to Firebase.auth.uid
+                            )
+                            auth.currentUser?.let { it1 ->
+                                cloudStorage.collection("users").document(it1.uid)
+                                    .set(user)
+                                    .addOnSuccessListener { documentReference ->
+                                        Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference}")
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w(ContentValues.TAG, "Error adding document", e)
+                                    }
                             }
                             startActivity(intent2)
                         } else {
