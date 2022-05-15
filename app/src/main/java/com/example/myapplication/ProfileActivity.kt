@@ -63,7 +63,6 @@ class ProfileActivity : AppCompatActivity() {
 //                || age.text.toString().isBlank() || username.text.toString().isBlank()) {
 //                Toast.makeText(applicationContext,"Please fill all the information",Toast.LENGTH_LONG).show()
 //            } else {
-
                 val radioButton = findViewById<RadioButton>(gender.checkedRadioButtonId)
                 val user = hashMapOf(
                     "Name" to username.text.toString(),
@@ -77,6 +76,11 @@ class ProfileActivity : AppCompatActivity() {
                         .set(user)
                         .addOnSuccessListener { documentReference ->
                             Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference}")
+                            Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
+
+                            val intent2 = Intent(this, ProfileActivity::class.java)
+                            startActivity(intent2)
+
                         }
                         .addOnFailureListener { e ->
                             Log.w(TAG, "Error adding document", e)
