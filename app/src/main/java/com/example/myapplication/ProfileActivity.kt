@@ -2,28 +2,31 @@ package com.example.myapplication
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserInfo
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_profile.*
-import java.util.jar.Attributes
 
 class ProfileActivity : AppCompatActivity() {
+    private val pickImage = 100
+    private var imageUri: Uri? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
         val cloudStorage = Firebase.firestore
         val auth = FirebaseAuth.getInstance();
-
+        val StorageReference = Firebase.storage.reference
 
 
         val username = findViewById<EditText>(R.id.Username)
@@ -34,10 +37,13 @@ class ProfileActivity : AppCompatActivity() {
         val chooseImage = findViewById<ImageButton>(R.id.addImageButton)
         val noneButton = findViewById<RadioButton>(R.id.noneButton)
         val menuButton = findViewById<Button>(R.id.menuButton)
+        val userImage = findViewById<ImageView>(R.id.userImage)
 
 
         chooseImage.setOnClickListener {
-            choosePicture();
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, pickImage)
+
         }
         emailView.text = auth.currentUser?.email ?: ""
 
@@ -67,6 +73,8 @@ class ProfileActivity : AppCompatActivity() {
 
         val saveButton = findViewById<Button>(R.id.btnSave)
 
+
+
         saveButton.setOnClickListener {
 
             val userinfo2 = userInformation.text.toString()
@@ -74,9 +82,6 @@ class ProfileActivity : AppCompatActivity() {
             val username2 = username.text.toString()
             val radioButton = findViewById<RadioButton>(gender.checkedRadioButtonId)
             val radiobutton2 = radioButton.text.toString()
-
-
-
 
            if (userinfo2.isBlank() || userage2.isBlank() || username2.isBlank()) {
                 Toast.makeText(applicationContext,"Please fill all the information",Toast.LENGTH_LONG).show()
@@ -98,8 +103,8 @@ class ProfileActivity : AppCompatActivity() {
                             Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference}")
                             Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
 
-                            val intent2 = Intent(this, ProfileActivity::class.java)
-                            startActivity(intent2)
+                            val intent = Intent(this, menuActivity::class.java)
+                            startActivity(intent)
 
                         }
                         .addOnFailureListener { e ->
@@ -111,14 +116,16 @@ class ProfileActivity : AppCompatActivity() {
             }
 
         }
+
+
         menuButton.setOnClickListener{
             val intent = Intent(this, menuActivity::class.java)
             startActivity(intent)
         }
 
-        val settingsButtom = findViewById<ImageButton>(R.id.settingsButton)
-        settingsButtom.setOnClickListener {
-            val popupMenu: PopupMenu = PopupMenu(this, settingsButtom)
+        val settingsButton = findViewById<ImageButton>(R.id.settingsButton)
+        settingsButton.setOnClickListener {
+            val popupMenu: PopupMenu = PopupMenu(this, settingsButton)
             popupMenu.menuInflater.inflate(R.menu.profile_menu, popupMenu.menu)
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when (item.itemId) {
@@ -134,12 +141,16 @@ class ProfileActivity : AppCompatActivity() {
 
         }
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == pickImage) {
+            imageUri = data?.data
+            userImage.setImageURI(imageUri)
 
-    private fun choosePicture() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
 
-        startActivity(intent);
-
-
+        }
     }
+
+
+
 }

@@ -13,7 +13,7 @@ class menuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        val auth = FirebaseAuth.getInstance();
+        val auth = FirebaseAuth.getInstance()
 
         val emailView = findViewById<TextView>(R.id.userEmailView)
         emailView.text = auth.currentUser?.email ?: ""
