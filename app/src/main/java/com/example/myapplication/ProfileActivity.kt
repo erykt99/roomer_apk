@@ -24,11 +24,21 @@ class ProfileActivity : AppCompatActivity() {
         val cloudStorage = Firebase.firestore
         val auth = FirebaseAuth.getInstance();
 
+
+
         val username = findViewById<EditText>(R.id.Username)
         val age = findViewById<EditText>(R.id.userAge)
         val userInformation = findViewById<EditText>(R.id.userInfromation)
         val gender = findViewById<RadioGroup>(R.id.Gender)
         val emailView = findViewById<TextView>(R.id.textView3)
+        val chooseImage = findViewById<ImageButton>(R.id.addImageButton)
+        val noneButton = findViewById<RadioButton>(R.id.noneButton)
+
+
+
+        chooseImage.setOnClickListener {
+            choosePicture();
+        }
         emailView.text = auth.currentUser?.email ?: ""
 
         val ID = Firebase.auth.uid.toString()
@@ -41,6 +51,7 @@ class ProfileActivity : AppCompatActivity() {
                     val hint = document.get("Name").toString()
                     val age2 = document.get("Age").toString()
                     val UF  = document.get("UserInformation").toString()
+                    gender.check(noneButton.id)
                     userInformation.hint = UF
                     userAge.hint = age2
                     username.hint = hint;
@@ -54,21 +65,33 @@ class ProfileActivity : AppCompatActivity() {
             }
 
 
-
-
-
         val saveButton = findViewById<Button>(R.id.btnSave)
+
         saveButton.setOnClickListener {
-//            if (userInformation.text.toString().isBlank() || !gender.isPressed
-//                || age.text.toString().isBlank() || username.text.toString().isBlank()) {
-//                Toast.makeText(applicationContext,"Please fill all the information",Toast.LENGTH_LONG).show()
-//            } else {
-                val radioButton = findViewById<RadioButton>(gender.checkedRadioButtonId)
+
+            val userinfo2 = userInformation.text.toString()
+            val userage2 = age.text.toString()
+            val username2 = username.text.toString()
+            val radioButton = findViewById<RadioButton>(gender.checkedRadioButtonId)
+            val radiobutton2 = radioButton.text.toString()
+
+
+
+
+           if (userinfo2.isBlank() || userage2.isBlank() || username2.isBlank()) {
+                Toast.makeText(applicationContext,"Please fill all the information",Toast.LENGTH_LONG).show()
+           } else {
+
+
+
+
+
+    //            val radioButton = findViewById<RadioButton>(gender.checkedRadioButtonId)
                 val user = hashMapOf(
-                    "Name" to username.text.toString(),
-                    "UserInformation" to userInformation.text.toString(),
-                    "Age" to age.text.toString(),
-                    "Gender" to radioButton.text.toString(),
+                    "Name" to username2,
+                    "UserInformation" to userinfo2,
+                    "Age" to userage2,
+                    "Gender" to radiobutton2,
                     "ID" to Firebase.auth.uid
                 )
                 auth.currentUser?.let { it1 ->
@@ -87,7 +110,7 @@ class ProfileActivity : AppCompatActivity() {
                         }
                 }
 
-          //  }
+            }
         }
 
 
@@ -108,5 +131,13 @@ class ProfileActivity : AppCompatActivity() {
             popupMenu.show()
 
         }
+    }
+
+    private fun choosePicture() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+
+        startActivity(intent);
+
+
     }
 }
