@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menuActivity">
+
+    <Button
+        android:id="@+id/showAdsButton"
+        android:layout_width="303dp"
+        android:layout_height="44dp"
+        android:text="Show Ads"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.082" />
+
+    <Button
+        android:id="@+id/addAdButton"
+        android:layout_width="304dp"
+        android:layout_height="46dp"
+        android:text="Add ad"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showAdsButton"
+        app:layout_constraintVertical_bias="0.042" />
+
+    <Button
+        android:id="@+id/editProfileButton"
+        android:layout_width="302dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="140dp"
+        android:text="Edit your profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addAdButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/myAdsButton"
+        android:layout_width="307dp"
+        android:layout_height="39dp"
+        android:text="My Ads"
+        app:layout_constraintBottom_toTopOf="@+id/editProfileButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addAdButton"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <Button
+        android:id="@+id/chatButton"
+        android:layout_width="303dp"
+        android:layout_height="42dp"
+        android:text="Chat"
+        app:layout_constraintBottom_toTopOf="@+id/editProfileButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myAdsButton"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="134dp"
+        android:layout_height="30dp"
+        android:text="You are login as:"
+        app:layout_constraintBottom_toTopOf="@+id/editProfileButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatButton"
+        app:layout_constraintVertical_bias="0.122" />
+
+    <TextView
+        android:id="@+id/userEmailView"
+        android:layout_width="109dp"
+        android:layout_height="40dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/editProfileButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.097" />
+</androidx.constraintlayout.widget.ConstraintLayout>

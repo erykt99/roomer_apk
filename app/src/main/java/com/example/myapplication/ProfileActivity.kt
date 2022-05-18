@@ -33,7 +33,7 @@ class ProfileActivity : AppCompatActivity() {
         val emailView = findViewById<TextView>(R.id.textView3)
         val chooseImage = findViewById<ImageButton>(R.id.addImageButton)
         val noneButton = findViewById<RadioButton>(R.id.noneButton)
-
+        val menuButton = findViewById<Button>(R.id.menuButton)
 
 
         chooseImage.setOnClickListener {
@@ -83,9 +83,6 @@ class ProfileActivity : AppCompatActivity() {
            } else {
 
 
-
-
-
     //            val radioButton = findViewById<RadioButton>(gender.checkedRadioButtonId)
                 val user = hashMapOf(
                     "Name" to username2,
@@ -109,10 +106,15 @@ class ProfileActivity : AppCompatActivity() {
                             Log.w(TAG, "Error adding document", e)
                         }
                 }
-
+               val intent = Intent(this, menuActivity::class.java)
+               startActivity(intent)
             }
-        }
 
+        }
+        menuButton.setOnClickListener{
+            val intent = Intent(this, menuActivity::class.java)
+            startActivity(intent)
+        }
 
         val settingsButtom = findViewById<ImageButton>(R.id.settingsButton)
         settingsButtom.setOnClickListener {
