@@ -1,24 +1,37 @@
 package com.example.myapplication
 
+import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
+import com.google.rpc.context.AttributeContext
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.Calendar.getInstance
 
 class ProfileActivity : AppCompatActivity() {
     private val pickImage = 100
     private var imageUri: Uri? = null
-
+    val storageReference = Firebase.storage.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +39,7 @@ class ProfileActivity : AppCompatActivity() {
 
         val cloudStorage = Firebase.firestore
         val auth = FirebaseAuth.getInstance();
-        val StorageReference = Firebase.storage.reference
+
 
 
         val username = findViewById<EditText>(R.id.Username)
@@ -48,7 +61,15 @@ class ProfileActivity : AppCompatActivity() {
         emailView.text = auth.currentUser?.email ?: ""
 
         val ID = Firebase.auth.uid.toString()
-
+        val storageReference = FirebaseStorage.getInstance().getReference().child("users_photos/$ID")
+        val localFile = File.createTempFile("$ID", "jpeg")
+        storageReference.getFile(localFile)
+            .addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                userImage.setImageBitmap(bitmap)
+            }.addOnFailureListener {
+                Toast.makeText(this, "can't load image", Toast.LENGTH_SHORT).show()
+            }
         val docRef = cloudStorage.collection("users").document(ID)
         docRef.get()
             .addOnSuccessListener { document ->
@@ -61,7 +82,6 @@ class ProfileActivity : AppCompatActivity() {
                     userInformation.hint = UF
                     userAge.hint = age2
                     username.hint = hint;
-
                 } else {
                     Log.d(TAG, "No such document")
                 }
@@ -70,10 +90,7 @@ class ProfileActivity : AppCompatActivity() {
                 Log.d(TAG, "get failed with ", exception)
             }
 
-
         val saveButton = findViewById<Button>(R.id.btnSave)
-
-
 
         saveButton.setOnClickListener {
 
@@ -146,11 +163,28 @@ class ProfileActivity : AppCompatActivity() {
         if (resultCode == RESULT_OK && requestCode == pickImage) {
             imageUri = data?.data
             userImage.setImageURI(imageUri)
+            uploadUserImage();
 
 
+        }else {
+            Toast.makeText(this, "No added", Toast.LENGTH_SHORT).show()
         }
+
+
+    }
+
+    private fun uploadUserImage() {
+        val FirebaseAuth = FirebaseAuth.getInstance();
+        val fileName = FirebaseAuth.uid
+        val storageReference = FirebaseStorage.getInstance().getReference("users_photos/$fileName")
+        storageReference.putFile(imageUri!!).addOnSuccessListener {
+            Toast.makeText(this, "Image added", Toast.LENGTH_SHORT).show()
+        }
+            .addOnFailureListener {
+                Toast.makeText(this, "Can't add image", Toast.LENGTH_SHORT).show()
+            }
     }
 
 
-
 }
+
