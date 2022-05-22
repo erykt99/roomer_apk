@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".addingRommateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".addingAnnouncementMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".addingFlatActivity"
+            android:exported="false" />
+        <activity
             android:name=".menuActivity"
             android:exported="false" />
         <activity

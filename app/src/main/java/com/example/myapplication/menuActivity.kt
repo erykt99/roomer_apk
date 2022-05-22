@@ -17,13 +17,19 @@ class menuActivity : AppCompatActivity() {
 
         val emailView = findViewById<TextView>(R.id.userEmailView)
         emailView.text = auth.currentUser?.email ?: ""
-
+        val addAd =  findViewById<Button>(R.id.addAdButton)
 
         val editProfile = findViewById<Button>(R.id.editProfileButton)
         editProfileButton.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
+
+        addAd.setOnClickListener {
+            val intent = Intent(this, addingAnnouncementMenuActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
 

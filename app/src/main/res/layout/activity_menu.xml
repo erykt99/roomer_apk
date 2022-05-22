@@ -70,6 +70,7 @@
         android:layout_width="134dp"
         android:layout_height="30dp"
         android:text="You are login as:"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/editProfileButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,12 +79,13 @@
 
     <TextView
         android:id="@+id/userEmailView"
-        android:layout_width="109dp"
-        android:layout_height="40dp"
+        android:layout_width="229dp"
+        android:layout_height="36dp"
         android:text="TextView"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/editProfileButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintVertical_bias="0.094" />
 </androidx.constraintlayout.widget.ConstraintLayout>

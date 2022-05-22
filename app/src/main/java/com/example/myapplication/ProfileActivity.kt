@@ -52,7 +52,6 @@ class ProfileActivity : AppCompatActivity() {
         val menuButton = findViewById<Button>(R.id.menuButton)
         val userImage = findViewById<ImageView>(R.id.userImage)
 
-
         chooseImage.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, pickImage)
