@@ -23,6 +23,8 @@ class addingAnnouncementMenuActivity : AppCompatActivity() {
 
         roommate.setOnClickListener {
 
+            val intent = Intent(this, addingRommateActivity::class.java)
+            startActivity(intent)
         }
 
 
