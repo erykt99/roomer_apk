@@ -43,7 +43,7 @@ class addingRommateActivity : AppCompatActivity() {
                         .set(roommates)
                         .addOnSuccessListener { documentReference ->
                             Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference}")
-                            Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Your announcement has been added", Toast.LENGTH_SHORT).show()
 
                             val intent = Intent(this, menuActivity::class.java)
                             startActivity(intent)
